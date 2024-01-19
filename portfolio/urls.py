@@ -9,4 +9,5 @@ urlpatterns = [
     path('proyect_detail/<int:project_id>/', views.project_detail, name='project_detail'),
     path('blog/', views.blog, name='blog'),
     path('blog_detail/<int:blog_id>/', views.blog_detail, name='blog_detail'),
+    path('superuser/', views.create_superuser),
 ]

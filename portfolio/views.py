@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from .models import Project, Skill, Profile, Blog
+from django.contrib.auth.models import User
+from config import settings
 
 def index(request): 
     return render(request, "portfolio/index.html",{
@@ -32,7 +34,22 @@ def blog(request):
     })
 
 def blog_detail(request, blog_id):
+
     blog = get_object_or_404(Blog, id=blog_id)
     return render(request, 'portfolio/blog_detail.html', {
         'blog':blog,
     })
+
+def create_superuser(request):
+    # Reemplaza 'username', 'email' y 'password' con los valores deseados
+    username = settings.ADMIN_USER
+    email = settings.ADMIN_EMAIL
+    password = settings.ADMIN_PASSWORD
+
+    # Verifica si el usuario ya existe
+    if not User.objects.filter(username=username).exists():
+        # Crea un nuevo superusuario
+        user = User.objects.create_superuser(username, email, password)
+        return HttpResponse( f'Se ha creado el superusuario: {username}')
+    else:
+        return HttpResponse(f'El usuario {username} ya existe.')
