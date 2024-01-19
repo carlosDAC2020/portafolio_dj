@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse
 from .models import Project, Skill, Profile, Blog
 from django.contrib.auth.models import User
-from config import settings
+from config import settings 
+
+
 
 def index(request): 
     return render(request, "portfolio/index.html",{

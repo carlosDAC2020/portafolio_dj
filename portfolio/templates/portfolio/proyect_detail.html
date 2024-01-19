@@ -56,7 +56,7 @@
   </header><!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-  <section id="hero-blog-detail" class="d-flex flex-column justify-content-center" style="background: url('{{ project.image.url }}') no-repeat; background-position: center center; background-attachment: fixed; background-size: cover;">
+  <section id="hero-blog-detail" class="d-flex flex-column justify-content-center" style="background: url('{{ project.image }}') no-repeat; background-position: center center; background-attachment: fixed; background-size: cover;">
     <div class="container " data-aos="zoom-in" data-aos-delay="100">
       <h1 class="proyect-title" style="color:#28f019;">{{project.title}}</h1>
     </div>
@@ -79,13 +79,13 @@
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="{{project.image.url}}" class="img-fluid" alt="">
+                    <img src="{{project.image}}" class="img-fluid" alt="">
                   </div>
                   <div class="carousel-item">
-                    <img src="{{project.image.url}}" class="img-fluid" alt="">
+                    <img src="{{project.image}}" class="img-fluid" alt="">
                   </div>
                   <div class="carousel-item">
-                    <img src="{{project.image.url}}" class="img-fluid" alt="">
+                    <img src="{{project.image}}" class="img-fluid" alt="">
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -128,7 +128,7 @@
                 <div class="row tech">
                     {% for skill in skills %}
                         <div class="col text-center align-items-center">
-                            <img src="{{skill.image.url}}" class="project-detail-skill-img" alt="">
+                            <img src="{{skill.image}}" class="project-detail-skill-img" alt="">
                             <h3 class="mt-3">{{skill.title}}</h3>
                         </div>
                     {% endfor %}

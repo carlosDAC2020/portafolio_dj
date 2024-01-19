@@ -84,7 +84,7 @@
 
         <div class="row">
           <div class="col-lg-4">
-            <img src="{{profile.profile_picture.url}}" class="img-fluid" alt="">
+            <img src="{{profile.profile_picture}}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
             <p>
@@ -94,7 +94,7 @@
             <div class="row pt-3">
               <div class="col d-flex align-items-center justify-content-center">
                 <div class="cv-button">
-                  <a href="{{profile.my_cv.url}}" class="anchor">
+                  <a href="{{profile.my_cv}}" class="anchor">
                     <span>Download CV</span>
                   </a>
                 </div>
@@ -121,7 +121,7 @@
             <div class="swiper-slide">
               <div class="testimonial-item">
                 
-                <img src="{{skill.image.url}}" class="testimonial-img" alt="">
+                <img src="{{skill.image}}" class="testimonial-img" alt="">
                 <h3>{{skill.title}}</h3>
                 <p>
                   {{skill.description}}
@@ -153,11 +153,10 @@
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
           {% for project in projects %}
-          
               <div class="col-lg-4 col-md-6 portfolio-item {{project.status}}">
                 <a href="{% url 'portfolio:project_detail' project.id %}" >
                   <div class="portfolio-wrap">
-                    <img src="{{project.image.url}}" class="img-fluid" alt="">
+                    <img src="{{project.image}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                       <h4>{{project.title}}</h4>
                       <p>{{project.summary}}</p>
@@ -197,7 +196,7 @@
         {% for blog in blogs %}
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch nb-4 " data-aos="zoom-in" data-aos-delay="100">
           <a href="{% url 'portfolio:blog_detail' blog.id %}">
-            <div class="icon-box iconbox-blue card card-cover h-100 overflow-hidden text-bg-dark rounded-4 " style="background-image: url('{{blog.image.url}}');">
+            <div class="icon-box iconbox-blue card card-cover h-100 overflow-hidden text-bg-dark rounded-4 " style="background-image: url('{{blog.image}}');">
               <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 aux">
                 <h4 class="pt-1 mt-1 mb-3 display-6 lh-1 fw-bold">{{blog.title}}</h4>
                 <p>{{blog.summary}}</p>

@@ -5,8 +5,8 @@ from markdown import markdown
 class Profile(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    profile_picture = models.ImageField(upload_to="profile/images/", blank=True)
-    my_cv = models.FileField(upload_to="profile/cv/", blank=True)
+    profile_picture = models.URLField(blank=True)
+    my_cv = models.URLField(blank=True)
     description = models.TextField()
     degree = models.CharField(max_length=100)  
     email = models.EmailField()  
@@ -30,7 +30,7 @@ class Certificate(models.Model):
 class Skill(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=250)
-    image = models.ImageField(upload_to="skills/images/", blank=True)
+    image = models.URLField(blank=True)
     certificates = models.ManyToManyField(Certificate, blank=True)
 
     def __str__(self) -> str:
@@ -57,7 +57,7 @@ class Project(models.Model):
     summary = models.CharField(max_length=250)
     description = models.TextField( blank=True)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='en_proceso')
-    image = models.ImageField(upload_to="portfolio/", blank=True)
+    image = models.URLField(blank=True)
     url_github = models.URLField(blank=True)
     url_deploy = models.URLField(blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
@@ -73,7 +73,7 @@ class Project(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=255)
     summary = models.TextField()
-    image = models.ImageField(upload_to="blog/images/", blank=True)
+    image = models.URLField(blank=True)
     body_markdown = models.TextField()
 
     def body_as_html(self):
