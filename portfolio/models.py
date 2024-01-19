@@ -6,6 +6,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     profile_picture = models.ImageField(upload_to="profile/images/", blank=True)
+    my_cv = models.FileField(upload_to="profile/cv/", blank=True)
     description = models.TextField()
     degree = models.CharField(max_length=100)  
     email = models.EmailField()  
@@ -53,14 +54,20 @@ class Project(models.Model):
     ]
 
     title = models.CharField(max_length=100)
-    description = models.CharField(max_length=250)
+    summary = models.CharField(max_length=250)
+    description = models.TextField( blank=True)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='en_proceso')
     image = models.ImageField(upload_to="portfolio/", blank=True)
-    url = models.URLField(blank=True)
+    url_github = models.URLField(blank=True)
+    url_deploy = models.URLField(blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
+    is_important = models.BooleanField(default=False, blank=True)
 
     def __str__(self) -> str:
         return self.title
+    
+    def body_as_html(self):
+        return mark_safe(markdown(self.description))
 
 
 class Blog(models.Model):

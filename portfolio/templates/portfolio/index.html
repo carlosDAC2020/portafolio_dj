@@ -91,21 +91,13 @@
               {{ profile.formatted_description|safe }}
             </p>
            
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>{{profile.degree}}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{profile.email}}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{profile.phone}}</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>{{profile.city}}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{{profile.age}}</span></li>
-                  
-                  
-                </ul>
+            <div class="row pt-3">
+              <div class="col d-flex align-items-center justify-content-center">
+                <div class="cv-button">
+                  <a href="{{profile.my_cv.url}}" class="anchor">
+                    <span>Download CV</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -115,7 +107,7 @@
     </section><!-- End About Section -->
 
     <!-- ======= Skills Section ======= -->
-    <section id="testimonials" class="testimonials section-bg">
+    <section id="testimonials" class="testimonials section-bg pt-5">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -128,16 +120,17 @@
             {% for skill in skills %}
             <div class="swiper-slide">
               <div class="testimonial-item">
+                
                 <img src="{{skill.image.url}}" class="testimonial-img" alt="">
                 <h3>{{skill.title}}</h3>
                 <p>
                   {{skill.description}}
                 </p>
-                  {% for certificate in skill.certificates.all %}
+                {% for certificate in skill.certificates.all %}
                   <a href="{{ certificate.file.url }}" target="_blank" rel="noopener noreferrer" title="{{ certificate.title }}">
                       <i class="bi bi-check2-circle"></i>
                   </a>
-              {% endfor %}
+                {% endfor %}
               </div>
             </div><!-- End testimonial item -->
             {% endfor %}
@@ -157,43 +150,37 @@
           <h2>Portfolio</h2>
         </div>
 
-        <div class="row">
-          <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              {% for estado in estados %}
-              <li data-filter=".{{estado}}">{{estado}}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
           {% for project in projects %}
-          <div class="col-lg-4 col-md-6 portfolio-item {{project.status}}">
-            <div class="portfolio-wrap">
-              <img src="{{project.image.url}}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>{{project.title}}</h4>
-                <p>{{project.description}}</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'img/portfolio/portfolio-1.jpg' %} " data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                  <a href="home.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
+          
+              <div class="col-lg-4 col-md-6 portfolio-item {{project.status}}">
+                <a href="{% url 'portfolio:project_detail' project.id %}" >
+                  <div class="portfolio-wrap">
+                    <img src="{{project.image.url}}" class="img-fluid" alt="">
+                    <div class="portfolio-info">
+                      <h4>{{project.title}}</h4>
+                      <p>{{project.summary}}</p>
+                      <div class="portfolio-links">
+                        <a href="{% url 'portfolio:project_detail' project.id %}" title="Portfolio Details" ><i class="bi bi-info-circle display-5 mt-6"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                
               </div>
-            </div>
-          </div>
           {% endfor %}
+          
 
         </div>
 
         
 
         <div class="section-title mt-3" >
-          <button type="button" class="btn "><i class="bi bi-plus-lg"></i></button>
+          <a href="{% url 'portfolio:portfolio' %}">
+            <button type="button" class="btn "><i class="bi bi-plus-lg"></i></button>
+          </a>
         </div>
-
       </div>
     </section><!-- End Portfolio Section -->
 
@@ -208,21 +195,26 @@
         
       <div class="row ">
         {% for blog in blogs %}
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="icon-box iconbox-blue card card-cover h-100 overflow-hidden text-bg-dark rounded-4 " style="background-image: url('{{blog.image.url}}');">
-            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 aux">
-              <h4 class="pt-1 mt-1 mb-3 display-6 lh-1 fw-bold">{{blog.title}}</h4>
-              <p>{{blog.summary}}</p>
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch nb-4 " data-aos="zoom-in" data-aos-delay="100">
+          <a href="{% url 'portfolio:blog_detail' blog.id %}">
+            <div class="icon-box iconbox-blue card card-cover h-100 overflow-hidden text-bg-dark rounded-4 " style="background-image: url('{{blog.image.url}}');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 aux">
+                <h4 class="pt-1 mt-1 mb-3 display-6 lh-1 fw-bold">{{blog.title}}</h4>
+                <p>{{blog.summary}}</p>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
+        
         {% endfor %}
         
       
       </div>
 
       <div class="section-title mt-4" >
-        <button type="button" class="btn "><i class="bi bi-plus-lg"></i></button>
+        <a href="{% url 'portfolio:blog' %}">
+          <button type="button" class="btn "><i class="bi bi-plus-lg"></i></button>
+        </a>
       </div>
       
       </div>
@@ -237,59 +229,60 @@
         </div>
 
         <div class="row mt-1">
+          <div class="col d-flex  align-items-center justify-content-center mt-5 mt-lg-0">
+              <h3 class="email-title m-1" id="emailTitle">{{profile.email}}</h3>
+              <i class="bi bi-copy m-1" id="copyIcon" ></i>
+              <a href="mailto:{{profile.email}}?subject=Asunto%20del%20correo&body=Hola,%20me%20gustaria%20contactarte...">
+                <button class="btn send-meil m-1"><i class="bi bi-send "></i></button>
+              </a>
 
-          <div class="col-lg-4">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>info@example.com</p>
-              </div>
-
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
-              </div>
-
-            </div>
-
+              
           </div>
-
-          <div class="col-lg-8 mt-5 mt-lg-0">
-
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control  bg-secondary text-light" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control  bg-secondary text-light" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control  bg-secondary text-light" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control  bg-secondary text-light" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-
-          </div>
-
-        </div>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // Obtener elementos del DOM
+          const emailTitle = document.getElementById("emailTitle");
+          const copyIcon = document.getElementById("copyIcon");
+          const sendEmailBtn = document.getElementById("sendEmailBtn");
+          const alertContainer = document.getElementById("alertContainer");
+      
+          // Copiar el correo electrónico al portapapeles
+          copyIcon.addEventListener("click", function () {
+            const emailText = emailTitle.innerText;
+            navigator.clipboard.writeText(emailText).then(function () {
+              console.log("Correo copiado al portapapeles:", emailText);
+      
+              // Mostrar alerta de Bootstrap
+              showAlert("Correo copiado al portapapeles");
+            });
+          });
+      
+          // Abrir el cliente de correo al hacer clic en el botón
+          sendEmailBtn.addEventListener("click", function () {
+            const email = emailTitle.innerText;
+            window.location.href = "mailto:" + email;
+          });
+      
+          // Función para mostrar la alerta de Bootstrap
+          function showAlert(message) {
+            // Crear elemento de alerta
+            const alertElement = document.createElement("div");
+            alertElement.classList.add("alert", "alert-success", "mt-3");
+            alertElement.innerText = message;
+      
+            // Agregar alerta al contenedor
+            alertContainer.appendChild(alertElement);
+      
+            // Eliminar la alerta después de 3 segundos
+            setTimeout(function () {
+              alertElement.remove();
+            }, 3000);
+          }
+        });
+      </script>
+      
+      
 
       </div>
     </section><!-- End Contact Section -->

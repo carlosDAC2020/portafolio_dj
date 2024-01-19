@@ -12,8 +12,11 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #272829;
+  
   background-color: #01080e;
+  
 }
+
 
 a {
   /*
@@ -44,6 +47,7 @@ h6 {
 p, span{
   color: #fff;
 }
+
 
 /* Estilos para el scrollbar */
 ::-webkit-scrollbar {
@@ -206,6 +210,8 @@ p, span{
     margin-left: 100px;
   }
 }
+
+
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -430,6 +436,98 @@ p, span{
   }
 }
 
+
+/*--------------------------------------------------------------
+# Hero Section blog detail
+--------------------------------------------------------------*/
+#hero-blog-detail {
+  width: 100%;
+  height: 60vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+@media (min-width: 992px) {
+  #hero-blog-detail {
+    padding-left: 160px;
+  }
+}
+
+#hero-blog-detail:before {
+  content: "";
+  background: rgba(8, 0, 0, 0.8);
+  position: absolute;
+  bottom: 40%;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#hero-blog-detail h1 {
+  font-size: 54px;
+  /*
+  color: #45505b;
+  */
+  color: #fff;
+  
+}
+
+#hero-blog-detail p {
+  /*
+  color: #45505b;
+  */
+  color: #fff;
+  margin: 15px 0 0 0;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+#hero-blog-detail p span {
+  /*
+  color: #0563bb;
+  */
+  color: #28f019;
+  letter-spacing: 1px;
+}
+
+#hero-blog-detail .social-links {
+  margin-top: 30px;
+}
+
+#hero-blog-detail .social-links a {
+  font-size: 24px;
+  display: inline-block;
+  color: #fff;
+  line-height: 1;
+  margin-right: 20px;
+  transition: 0.3s;
+}
+
+#hero-blog-detail .social-links a:hover {
+  color: #1c8d29;
+}
+
+@media (max-width: 992px) {
+  #hero-blog-detail {
+    text-align: center;
+  }
+
+  #hero-blog-detail h1 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  #hero-blog-detail p {
+    margin-top: 10px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+
+
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
@@ -516,6 +614,47 @@ section {
   margin-bottom: 0;
 }
 
+
+.anchor {
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: 600;
+  border-radius: 50px;
+  border: 2px solid #28f019;
+  padding: 14px 40px 13px;
+  overflow: hidden;
+  position: relative;
+}
+
+.anchor:hover {
+  color: #4e484a;
+  box-shadow: 0px 5px 90px 0px rgba(29, 192, 40, 0.64);
+}
+
+.cv-button a::before {
+  position: absolute;
+  content: "";
+  z-index: 0;
+  background-color: #28f019;
+  
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  height: 111%;
+  transition: all .3s ease;
+}
+
+.cv-button a:hover::before {
+  height: 11%;
+}
+
+.cv-button span {
+  position: relative;
+  z-index: 2;
+  transition: all .3s ease;
+}
 /*--------------------------------------------------------------
 # Facts
 --------------------------------------------------------------*/
@@ -878,8 +1017,14 @@ section {
   padding: 0;
 }
 
+.modal-content{
+  background-color: #283037;
+}
 
-
+.content_modal {
+  color: #ddd;
+  border: none;
+}
 
 .section-title .btn {
   background-color: #1e2328;
@@ -1296,4 +1441,100 @@ section {
 
 #footer .credits {
   font-size: 13px;
+}
+
+
+
+/*     detalle de proyectos*/
+.proyect-title {
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: relative;
+  color:#28f019;
+}
+
+.project-detail-skill-img{
+  align-items: center;
+  width: 100px;
+  height: 100px;
+}
+
+.tech {
+  color: #ddd;
+}
+
+.nn{
+  color: #1e2227;
+}
+.nnn{
+  color: #ddd;
+}
+.icon_link{
+  font-size: 100px; 
+}
+
+.proyect-title h3{
+  color: #ddd;
+
+}
+
+.text-secondary:hover .icon_link {
+  color:#28f019;
+}
+
+
+.heder-blog{
+  width: 98%;
+}
+
+
+.info-blog{
+  width: 100%;
+  background-color: black;
+  padding-top: 19px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-bottom: 6px;
+}
+
+.blog-wrap:hover{
+  color:#389631;
+  box-shadow: 0px 5px 90px 0px rgba(29, 192, 40, 0.64);
+}
+
+
+
+
+.email-title{
+  background-color: #283037;
+  color:#fff;
+  padding: 15px;
+  border-radius: 30px;
+}
+.bi-copy{
+  font-size: 25px;
+  background-color: #1674ae;
+  padding: 15px;
+  border-radius: 90px;
+  color: #ddd;
+}
+.bi-copy:hover{
+  box-shadow: 0px 5px 50px 0px rgba(20, 213, 223, 0.64);
+}
+.send-meil{
+  font-size: 25px;
+  background-color: #13600e;
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  color: #ddd;
+  transition: all 0.8s ease-in-out;
+}
+
+.send-meil:hover {
+  background-color: #1c8d29; 
+  color: #fff;
+  transform: rotate(410deg);
+  box-shadow: 0px 5px 50px 0px rgba(29, 192, 40, 0.64);
 }
