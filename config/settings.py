@@ -151,6 +151,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-ADMIN_USER="cdap"
-ADMIN_EMAIL="ruz2019@gmailcom"
-ADMIN_PASSWORD="cdap0901"
+ADMIN_USER=""
+ADMIN_EMAIL=""
+ADMIN_PASSWORD=""
